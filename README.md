@@ -47,6 +47,20 @@ py -3.10 -m pip install -e .
 cd "..\.."
 ```
 
+### 4. РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РєР°СЃС‚РѕРјРЅС‹Рµ Hydra-РєРѕРЅС„РёРіРё РІ AudioCraft
+
+Р¤Р°Р№Р»С‹ РёР· `audiocraft_overrides` РЅСѓР¶РЅС‹ РґР»СЏ Р·Р°РїСѓСЃРєР° `solver=musicgen/musicgen_small_musiccaps_structured_16gb`.
+Р’ upstream AudioCraft РёС… РЅРµС‚, РїРѕСЌС‚РѕРјСѓ РёС… РЅСѓР¶РЅРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ РѕС‚РґРµР»СЊРЅРѕ:
+
+```powershell
+cd "E:\Fine-tuning MusicGen"
+Copy-Item ".\audiocraft_overrides\conditioner\text2music_structured.yaml" ".\external\audiocraft\config\conditioner\text2music_structured.yaml" -Force
+Copy-Item ".\audiocraft_overrides\dset\audio\musiccaps_structured.yaml" ".\external\audiocraft\config\dset\audio\musiccaps_structured.yaml" -Force
+Copy-Item ".\audiocraft_overrides\solver\musicgen\musicgen_small_musiccaps_structured_16gb.yaml" ".\external\audiocraft\config\solver\musicgen\musicgen_small_musiccaps_structured_16gb.yaml" -Force
+```
+
+Р•СЃР»Рё `external/audiocraft` Р±С‹Р» РїРµСЂРµРєР»РѕРЅРёСЂРѕРІР°РЅ Р·Р°РЅРѕРІРѕ, СЌС‚РѕС‚ С€Р°Рі РЅСѓР¶РЅРѕ РїРѕРІС‚РѕСЂРёС‚СЊ.
+
 ## Переменные окружения
 
 Шаблон лежит в [.env.example](./.env.example).
