@@ -120,6 +120,35 @@ py -3.10 -m dora -P audiocraft run solver=musicgen/musicgen_small_musiccaps_stru
 
 - [musicgen_small_musiccaps_structured_16gb.yaml](./audiocraft_overrides/solver/musicgen/musicgen_small_musiccaps_structured_16gb.yaml)
 
+## Экспорт модели для инференса
+
+После завершения обучения AudioCraft сохраняет training checkpoint вида `checkpoint.th` в `outputs/dora/xps/<XP_SIG>/`.
+Папка с `state_dict.bin` и `compression_state_dict.bin` автоматически не создается.
+Для локального инференса ее нужно экспортировать отдельно.
+
+Пример команды:
+
+```powershell
+cd "E:\Fine-tuning MusicGen\external\audiocraft"
+@'
+from pathlib import Path
+from audiocraft.utils import export
+
+checkpoint_path = Path(r"E:\Fine-tuning MusicGen\outputs\dora\xps\YOUR_XP_SIG\checkpoint.th")
+out_dir = Path(r"E:\Fine-tuning MusicGen\outputs\exported_models\musicgen_small_structured_best")
+
+export.export_lm(checkpoint_path, out_dir / "state_dict.bin")
+export.export_pretrained_compression_model("facebook/encodec_32khz", out_dir / "compression_state_dict.bin")
+
+print(out_dir)
+'@ | py -3.10 -
+```
+
+После этого в `outputs/exported_models/musicgen_small_structured_best/` появятся:
+
+- `state_dict.bin`
+- `compression_state_dict.bin`
+
 ## Запуск инференса
 
 Ссылка на архив с лучшей моделью:
