@@ -47,10 +47,10 @@ py -3.10 -m pip install -e .
 cd "..\.."
 ```
 
-### 4. РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РєР°СЃС‚РѕРјРЅС‹Рµ Hydra-РєРѕРЅС„РёРіРё РІ AudioCraft
+### 4. Скопировать кастомные Hydra-конфиги в AudioCraft
 
-Р¤Р°Р№Р»С‹ РёР· `audiocraft_overrides` РЅСѓР¶РЅС‹ РґР»СЏ Р·Р°РїСѓСЃРєР° `solver=musicgen/musicgen_small_musiccaps_structured_16gb`.
-Р’ upstream AudioCraft РёС… РЅРµС‚, РїРѕСЌС‚РѕРјСѓ РёС… РЅСѓР¶РЅРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ РѕС‚РґРµР»СЊРЅРѕ:
+Файлы из `audiocraft_overrides` нужны для запуска `solver=musicgen/musicgen_small_musiccaps_structured_16gb`.
+В upstream AudioCraft их нет, поэтому их нужно скопировать отдельно:
 
 ```powershell
 cd "E:\Fine-tuning MusicGen"
@@ -59,7 +59,7 @@ Copy-Item ".\audiocraft_overrides\dset\audio\musiccaps_structured.yaml" ".\exter
 Copy-Item ".\audiocraft_overrides\solver\musicgen\musicgen_small_musiccaps_structured_16gb.yaml" ".\external\audiocraft\config\solver\musicgen\musicgen_small_musiccaps_structured_16gb.yaml" -Force
 ```
 
-Р•СЃР»Рё `external/audiocraft` Р±С‹Р» РїРµСЂРµРєР»РѕРЅРёСЂРѕРІР°РЅ Р·Р°РЅРѕРІРѕ, СЌС‚РѕС‚ С€Р°Рі РЅСѓР¶РЅРѕ РїРѕРІС‚РѕСЂРёС‚СЊ.
+Если `external/audiocraft` был переклонирован заново, этот шаг нужно повторить.
 
 ## Переменные окружения
 
@@ -139,8 +139,6 @@ py -3.10 -m dora -P audiocraft run solver=musicgen/musicgen_small_musiccaps_stru
 После завершения обучения AudioCraft сохраняет training checkpoint вида `checkpoint.th` в `outputs/dora/xps/<XP_SIG>/`.
 Папка с `state_dict.bin` и `compression_state_dict.bin` автоматически не создается.
 Для локального инференса ее нужно экспортировать отдельно.
-
-Пример команды:
 
 ```powershell
 cd "E:\Fine-tuning MusicGen\external\audiocraft"
