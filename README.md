@@ -126,7 +126,13 @@ py -3.10 -m dora -P audiocraft run solver=musicgen/musicgen_small_musiccaps_stru
 
 - [Тык](https://drive.google.com/file/d/1XY-N3BaRl5-VglwYOghMYD57SG7zvi81/view?usp=sharing)
 
-После распаковки архива должна получиться папка с файлами:
+В архиве лежат:
+
+- веса модели
+- готовые `prompt_*.wav`
+- соответствующие `prompt_*.json`
+
+Для повторного запуска инференса нужны файлы:
 
 - `state_dict.bin`
 - `compression_state_dict.bin`
