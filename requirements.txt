@@ -1,0 +1,6 @@
+datasets>=2.19.0
+comet_ml>=3.49.0
+python-dotenv>=1.0.1
+requests>=2.32.0
+soundfile>=0.12.1
+tqdm>=4.66.0
